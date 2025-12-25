@@ -1,23 +1,69 @@
-<section class="h-screen flex justify-center items-center overflow-hidden">
+<section class="heroSec h-screen relative flex justify-center items-center overflow-hidden">
 
-    <div class="overlay  absolute inset-0 bg-gradient-to-b from-[#0F172A]/90 via-[#0F172A]/70 to-[#0F172A]">
+    <div class="overlay  absolute inset-0 bg-linear-to-b from-[#0F172A]/90 via-[#0F172A]/70 to-[#0F172A]">
     </div>
-    <img src="bgImg.jpeg" alt="" class="absolute inset-0 w-full h-full -z-10">
+    <img src="bgImg.jpeg" alt="" class="absolute inset-0 w-full h-full -z-10 object-cover">
 
-    <div class="content grid justify-items-center gap-10 text-center z-50">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold">Discover & Explore <span
-                class="block mt-5 bg-gradient-to-r from-[#10B981] to-[#047551] bg-clip-text text-transparent">Epic
-                Games</span></h1>
-        <p class="text-[#94a3b8] text-lg sm:text-xl md:text-2xl max-w-2xl">Browse through our curated collection of the
-            best games with ratings, genres, and detailed information to find your next adventure.</p>
-        <a routerLink="games" class="w-50 h-12 rounded-2xl text-black font-bold flex justify-center items-center text-center bg-[#10b981] shadow-lg shadow-[#10b981]/30  hover:shadow-xl hover:shadow-[#10b981]/50 hover:scale-105 hover:bg-[#059669] transition-all duration-300 ">
-            Browse Games <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-arrow-right w-5 h-5 group-hover:translate-x-1 transition-transform"
-                aria-hidden="true">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-        </a>
+    <div class=" px-4 py-2 grid justify-items-center gap-10 text-center z-50">
+        <div class="main-title">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold">Discover & Explore <span
+                    class="block mt-5 bg-linear-to-r from-[#10B981] to-[#047551] bg-clip-text text-transparent">Epic
+                    Games</span></h1>
+            <p class="text-[#94a3b8] text-lg sm:text-xl md:text-2xl max-w-2xl">Browse through our curated collection of
+                the
+                best games with ratings, genres, and detailed information to find your next adventure.</p>
+        </div>
+        <div class="btn">
+            <a routerLink="/games"
+                class="w-50 h-12 rounded-2xl text-black font-bold flex justify-center items-center text-center bg-[#10b981] shadow-lg shadow-[#10b981]/30  hover:shadow-xl hover:shadow-[#10b981]/50 hover:scale-105 hover:bg-[#059669] transition-all duration-300 ">
+                Browse Games <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-right w-5 h-5 group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="data  w-full flex justify-between items-center text-center">
+            @for (item of websiteData; track $index) {
+            <div class="grid">
+                <p class="text-[#10b981] text-4xl font-bold">{{item.Count}}<span>+</span></p>
+                <p class="text-[#94a3b8]">{{item.text}}</p>
+            </div>
+            }
+        </div>
+
+        <div class="mouse-btn absolute bottom-10">
+            <a href="#gameSec">
+                <div class="relative w-6 h-10 border-2 border-[#10b98180] rounded-2xl">
+                    <span class="block rounded-full bg-[#10B981] w-1.5 h-2 absolute top-[20%] left-[35%]"></span>
+                </div>
+            </a>
+        </div>
     </div>
+
+</section>
+
+<section id="gameSec" class="gameSec min-h-screen"> 
+    <div class="container mx-auto px-4 py-2 ">
+        <div class="headSec flex justify-between">
+            <div class="right">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-3">Popular Games</h2>
+                <p class="text-[#94a3b8]">Discover the highest rated games in our collection</p>
+            </div>
+
+            <a routerLink="games"
+                class="min-w-15 h-10 px-5 py-2 rounded-xl bg-[#1e293b] text-[#10B981] border border-[#10b98133] text-nowrap flex justify-center items-center">
+                Viwe All
+            </a>
+        </div>
+        <div class="cards grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 my-20">
+            @for (game of games ;track $index) {
+            <app-card [game]="game"></app-card> 
+            }
+        </div>
+    </div>
+
+
 </section>

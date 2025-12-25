@@ -9,4 +9,19 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 })
 export class Header {
 
+  links = [
+    {
+      text: 'Home',
+      path: 'home'
+    },
+    {
+      text: 'Games',
+      path: 'games'
+    },
+    {
+      text: 'Favorites',
+      path: 'favorites'
+    }
+  ]
+
 }

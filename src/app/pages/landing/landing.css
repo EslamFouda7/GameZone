@@ -1,0 +1,38 @@
+.gameSec{
+   padding-top: 100px;}
+
+.mouse-btn span{
+    opacity: 1;
+    animation: mouseAnmation 2s linear infinite ;
+    filter: saturate(2);
+}
+
+@keyframes mouseAnmation {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: .5;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.mouse-btn{
+    animation: mouseJump 2s linear infinite;
+}
+@keyframes mouseJump {
+    0%{
+       transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(10px);
+    }
+
+    100%{
+         transform: translateY(0px);
+    }
+}

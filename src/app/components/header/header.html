@@ -1,4 +1,4 @@
-<header class="fixed top-0 w-full  h-16 bg-[#0000] z-50">
+<header class="fixed top-0 w-full  h-16 bg-[#0000] z-100">
     <div class="container  mx-auto px-4 py-2">
         <div class="flex justify-between items-center">
             <a routerLink="home" class="flex gap-2 items-center group">
@@ -21,9 +21,9 @@
             </a>
 
             <div class="links flex gap-10 text-[#94a3b8]">
-                <a routerLink="home" routerLinkActive="text-[#10b981] border-b " class="transition-all">Home</a>
-                <a routerLink="games" routerLinkActive="text-[#10b981] border-b " class="transition-all">Games</a>
-                <a routerLink="favorites" routerLinkActive="text-[#10b981] border-b " class="transition-all">Favorites</a>
+                @for (link of links; track $index) {
+                <a [routerLink]="link.path" routerLinkActive="text-[#10b981] border-b " class="transition-all">{{link.text}}</a>
+                }
             </div>
             <div class="btn-search">
                 <button class="flex items-center justify-center rounded-xl bg-[#1e293b] text-[#94a3b8] w-10 h-10">

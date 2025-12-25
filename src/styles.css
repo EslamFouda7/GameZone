@@ -1,8 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+html{
+    scroll-behavior:smooth;
+  }
 body{
     background-color: #0f172a;
     color: white;
-    height: 10000px;
+ 
+}
+
+::-webkit-scrollbar {
+  width: 7px; 
+
+}
+
+/* تخصيص لون الشريط */
+::-webkit-scrollbar-track {
+  background-color: #0f172a; 
+}
+
+/* تخصيص مقبض شريط التمرير */
+::-webkit-scrollbar-thumb {
+  background-color: #334155; 
+  border-radius: 10px; 
 }

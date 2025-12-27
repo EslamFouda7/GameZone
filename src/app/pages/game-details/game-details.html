@@ -1,0 +1,57 @@
+<section class="min-h-screen pt-16">
+  <div class="hesdSec relative h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
+    <img [src]="gameDitails().background_image" [alt]="gameDitails().name" class="w-full h-full object-cover">
+    <div class="overlay  absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/60 to-transparent">
+    </div>
+    <div class="container mx-auto p-4 absolute bottom-0 right-0">
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-10">{{gameDitails().name}}</h1>
+      <div class="flex items-center flex-wrap gap-4">
+        <div
+          class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#020617]/80 backdrop-blur-sm border border-[#1E293B]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-star w-5 h-5 fill-[#FACC15] text-[#FACC15]" aria-hidden="true">
+            <path
+              d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+            </path>
+          </svg>
+          <span class="text-[#94A3B8]"><span
+              class="text-lg font-semibold text-[#FACC15]">{{gameDitails().rating}}</span> /
+            {{gameDitails().rating_top}}</span>
+        </div>
+        <div
+          class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#020617]/80 backdrop-blur-sm border border-[#1E293B]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-calendar w-5 h-5 text-[#94A3B8]" aria-hidden="true">
+            <path d="M8 2v4"></path>
+            <path d="M16 2v4"></path>
+            <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+            <path d="M3 10h18"></path>
+          </svg>
+          <span class="font-bold text-[#F8FAFC]">{{gameDitails().released}}</span>
+        </div>
+        <span class="px-4 py-2 text-[#10B981] bg-[#10b9811a] border border-[#10b98133] rounded-lg">
+          @for (genre of gameDitails().genres; track $index) {
+          {{ genre.name }}
+          }
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="AboutGame">
+    <div class="container mx-auto p-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="col-span-2">
+          <h2 class="text-2xl md:text-4xl font-bold text-[#F8FAFC] py-3">About This Game</h2>
+          <p class="text-[#94A3B8] leading-relaxed text-lg">{{gameDitails().description_raw}}</p>
+        </div>
+        <div class="cl-span-1">
+          mnm
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

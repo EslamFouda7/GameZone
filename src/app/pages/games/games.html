@@ -1,1 +1,58 @@
-<p>games works!</p>
+<section class="gamesSec min-h-screen">
+  <div class="container mx-auto px-4 py-20">
+    <div class="headSec">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Popular Games</h2>
+      <p class="text-[#94a3b8]">Discover the highest rated games in our collection</p>
+    </div>
+    <div class="filters grid grid-cols-1 md:grid-cols-2 gap-3 mt-5">
+      <div class="search relative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-search absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#94A3B8]"
+          aria-hidden="true">
+          <path d="m21 21-4.34-4.34"></path>
+          <circle cx="11" cy="11" r="8"></circle>
+        </svg>
+        <input type="text" placeholder="Search games..." (input)="filterBySearch($event)"
+          class="w-full pl-12 pr-4 py-3 rounded-lg bg-[#020617] border border-[#1E293B] text-[#F8FAFC] placeholder:text-[#94A3B8] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 transition-all">
+      </div>
+      <div class="genres relative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-sliders-horizontal absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#94A3B8]"
+          aria-hidden="true">
+          <path d="M10 5H3"></path>
+          <path d="M12 19H3"></path>
+          <path d="M14 3v4"></path>
+          <path d="M16 17v4"></path>
+          <path d="M21 12h-9"></path>
+          <path d="M21 19h-5"></path>
+          <path d="M21 5h-7"></path>
+          <path d="M8 10v4"></path>
+          <path d="M8 12H3"></path>
+        </svg>
+        <select
+          class="w-full pl-12 pr-4 py-3 rounded-lg bg-[#020617] border border-[#1E293B] text-[#F8FAFC] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 transition-all appearance-none cursor-pointer"
+          (change)="filterByGerne($event)">
+          @for (genre of genres(); track $index) {
+          <option [value]="genre.slug">{{genre.name}}</option>
+          }
+
+
+        </select>
+      </div>
+    </div>
+    <p class="text-[#94a3b8] py-5">Showing {{games().length}} of {{allGames.length}} games</p>
+    <div class="games">
+      <div class="cards grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        @for (game of games() ;track game.id) {
+        <a [routerLink]="['/games' , game.id]">
+          <app-card [game]="game"></app-card>
+        </a>
+
+
+        }
+      </div>
+    </div>
+  </div>
+</section>

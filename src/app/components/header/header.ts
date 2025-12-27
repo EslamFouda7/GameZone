@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
@@ -8,6 +8,12 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   styleUrl: './header.css',
 })
 export class Header {
+  isScrolled = signal(false);
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled.set(window.scrollY > 20);
+  }
 
   links = [
     {

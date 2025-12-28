@@ -9,6 +9,13 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 })
 export class Header {
   isScrolled = signal(false);
+  isMenuOpen = signal(false);
+
+
+  toggleMenu() {
+    this.isMenuOpen.update(v => !v)
+    console.log("ddd")
+  }
 
   @HostListener('window:scroll')
   onScroll() {

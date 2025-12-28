@@ -1,6 +1,7 @@
-<header class="header fixed top-0 w-full  h-16 bg-[#0000] z-100" [class.scrolled]="isScrolled()">
+<header class="header flex items-center fixed top-0 w-full  h-16 bg-[#0000] z-100" [class.scrolled]="isScrolled()">
     <div class="container  mx-auto px-4 py-2">
         <div class="flex justify-between items-center">
+            <!-- logo -->
             <a routerLink="home" class="flex gap-2 items-center group">
                 <div class="logo relative ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -20,13 +21,27 @@
                 <span class="text-xl font-bold">GameZone</span>
             </a>
 
-            <div class="links flex gap-10 text-[#94a3b8]">
+            <!-- menuBtn -->
+            <button class="Btn block md:hidden" (click)="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-menu w-6 h-6" aria-hidden="true">
+                    <path d="M4 5h16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M4 19h16"></path>
+                </svg>
+            </button>
+
+            <!-- menuDisktop -->
+            <nav class="links hidden md:flex gap-10 text-[#94a3b8]">
                 @for (link of links; track $index) {
-                <a [routerLink]="link.path" routerLinkActive="text-[#10b981] border-b " class="transition-all">{{link.text}}</a>
+                <a [routerLink]="link.path" routerLinkActive="text-[#10b981] border-b "
+                    class="transition-all">{{link.text}}</a>
                 }
-            </div>
-            <div class="btn-search">
-                <button class="flex items-center justify-center rounded-xl bg-[#1e293b] text-[#94a3b8] w-10 h-10">
+            </nav>
+            <div class="btn-search hidden md:block">
+                <button routerLink="games"
+                    class="flex items-center justify-center rounded-xl bg-[#1e293b] text-[#94a3b8] w-10 h-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-search w-5 h-5" aria-hidden="true">
@@ -36,5 +51,25 @@
                 </button>
             </div>
         </div>
+
+
+
+
+
+        <!-- menuMobile -->
+        @if (isMenuOpen()) {
+        <nav
+            class="menu md:hidden absolute top-16 left-0 w-full flex flex-col gap-6 px-6 py-6 text-[#94a3b8] z-50 transition-all duration-500">
+
+            @for (link of links; track $index) {
+            <a [routerLink]="link.path" routerLinkActive="text-[#10b981]" (click)="toggleMenu()"
+                class="text-lg transition-all hover:text-[#10B981]">
+                {{ link.text }}
+            </a>
+            }
+        </nav>
+        }
+
+
     </div>
 </header>

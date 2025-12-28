@@ -43,7 +43,7 @@
       </div>
     </div>
     <p class="text-[#94a3b8] py-5">Showing {{games().length}} of {{allGames.length}} games</p>
-    <div class="games">
+    <div class="games mt-10">
       <div class="cards grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
         @for (game of games() ;track game.id) {
         <a [routerLink]="['/games' , game.id]">

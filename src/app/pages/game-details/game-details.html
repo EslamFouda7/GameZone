@@ -20,7 +20,7 @@
             {{gameDitails().rating_top}}</span>
         </div>
         <div
-          class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#020617]/80 backdrop-blur-sm border border-[#1E293B]">
+          class="Release flex items-center gap-2 px-4 py-2 rounded-lg bg-[#020617]/80 backdrop-blur-sm border border-[#1E293B]">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="lucide lucide-calendar w-5 h-5 text-[#94A3B8]" aria-hidden="true">
@@ -39,19 +39,116 @@
       </div>
     </div>
   </div>
-  <div class="AboutGame">
+  <div class="AboutGame py-12">
     <div class="container mx-auto p-4">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="col-span-2">
+        <div class="left lg:col-span-2">
           <h2 class="text-2xl md:text-4xl font-bold text-[#F8FAFC] py-3">About This Game</h2>
           <p class="text-[#94A3B8] leading-relaxed text-lg">{{gameDitails().description_raw}}</p>
+          <div class="slider grid grid-cols-1 gap-3">
+            <h2 class="text-2xl md:text-4xl font-bold text-[#F8FAFC] py-3">Screenshots</h2>
+            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+              class="mySwiper  w-full h-[500px]" thumbs-swiper=".mySwiper2" autoplay-delay="2000" space-between="30" effect="fade"
+              navigation="true">
+              @for (image of gameScreenshots(); track $index) {
+              <swiper-slide>
+                <img [src]="image.image" class="rounded-3xl w-full h-full object-cover" />
+              </swiper-slide>
+              }
+            </swiper-container>
+
+            <swiper-container class="mySwiper2 w-full h-[130px]" space-between="10" slides-per-view="4" free-mode="true"
+              watch-slides-progress="true">
+              @for (image of gameScreenshots(); track $index) {
+              <swiper-slide>
+                <img [src]="image.image" class="rounded-3xl w-full h-full object-cover" />
+              </swiper-slide>
+              }
+            </swiper-container>
+          </div>
+
         </div>
-        <div class="cl-span-1">
-          mnm
+        <div class="right lg:col-span-1">
+          <div class="grid gap-3  bg-[#020617] p-6 border border-[#1E293B] rounded-2xl mb-10">
+            <button
+              class="w-full flex justify-center items-center gap-3 font-bold bg-[#1e293b] border border-[#10B981]/20 px-6 py-3 rounded-lg"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-heart w-5 h-5 fill-current" aria-hidden="true">
+                <path
+                  d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5">
+                </path>
+              </svg>
+              Add to Favorites
+            </button>
+            <a [href]="gameDitails().website" target="_blank"
+              class="w-full flex justify-center items-center gap-3 font-bold bg-[#1e293b] border border-[#10B981]/20 px-6 py-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-external-link w-5 h-5" aria-hidden="true">
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14 21 3"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              </svg>
+              Official Store
+            </a>
+
+          </div>
+          <div class="grid  gap-3  bg-[#020617] p-6 border border-[#1E293B] rounded-2xl mb-10">
+            <h2 class="text-xl font-bold">Available On</h2>
+            @for (platformItem of gameDitails().parent_platforms; track $index) {
+            <div
+              class="w-full flex justify-start items-center gap-3 font-bold bg-[#1e293b] border border-[#10B981]/20 px-6 py-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-monitor w-5 h-5 text-[#10B981]" aria-hidden="true">
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg>
+              <p>{{platformItem.platform.name}}</p>
+            </div>
+            }
+          </div>
+          <div class="grid  gap-3  bg-[#020617] p-6 border border-[#1E293B] rounded-2xl mb-10">
+            <h2 class="text-xl font-bold">Game Info</h2>
+            <div class="genres">
+              <p class="text-[#94A3B8] text-sm">genres</p>
+              <div class="flex gap-2">
+                @for (genre of gameDitails().genres; track $index) {
+                <p class="font-bold text-[#F8FAFC]">{{genre.name}}</p>
+                }
+              </div>
+            </div>
+
+            <div class="Release">
+              <p class="text-[#94A3B8] text-sm">Release Date</p>
+              <p class="font-bold text-[#F8FAFC]">{{gameDitails().released}}</p>
+            </div>
+
+            <div class="Rating">
+              <p class="text-[#94A3B8] text-sm">User Rating</p>
+              <div class="flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-star w-5 h-5 fill-[#FACC15] text-[#FACC15]" aria-hidden="true">
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                  </path>
+                </svg>
+                <span class="text-[#94A3B8]">
+                  <span class="text-lg font-semibold text-[#FACC15]">{{gameDitails().rating}}</span> /
+                  {{gameDitails().rating_top}}</span>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
 
     </div>
   </div>
+
 
 </section>

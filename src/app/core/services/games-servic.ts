@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Game, Genre } from '../../shared/modules/game';
+import { Game, Genre, screenshots } from '../../shared/modules/game';
+import { outputAst } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +15,15 @@ export class GamesServic {
     return this.http.get<Game>(`${environment.baseUrl}/games?key=${environment.baseKey}`);
   }
 
-  getGameDetails(id:number) {
+  getGameDetails(id: number) {
     return this.http.get<Game>(`${environment.baseUrl}/games/${id}?key=${environment.baseKey}`);
   }
 
-  getAllgenres(){
-     return this.http.get<Genre>(`${environment.baseUrl}/genres?key=${environment.baseKey}`);
+  getAllgenres(): Observable<Genre> {
+    return this.http.get<Genre>(`${environment.baseUrl}/genres?key=${environment.baseKey}`);
+  }
+
+  getScreenshots(id: number): Observable<screenshots> {
+    return this.http.get<screenshots>(`${environment.baseUrl}/games/${id}/screenshots?key=${environment.baseKey}`)
   }
 }

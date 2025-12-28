@@ -37,7 +37,6 @@ export class Landing implements OnInit {
   getGames() {
     this._gamesServic.getGames().subscribe({
       next: (res: any) => {
-        console.log(res.results);
         this.games.set(res.results)
         console.log(this.games);
       },

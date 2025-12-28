@@ -25,13 +25,21 @@ export interface gameDetails {
   added: number;
   game_series_count: number;
   website: string;
-  released:string;
+  released: string;
 }
 
 
 
 
 ////////////////////////////////////////////////////
+
+export interface screenshots {
+  id: number;
+  image: string,
+  width: number,
+  height: number,
+}
+
 export interface Rating {
   id: number;
   title: string;

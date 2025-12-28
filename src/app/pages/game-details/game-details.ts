@@ -1,19 +1,22 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal } from '@angular/core';
 import { GamesServic } from '../../core/services/games-servic';
-import { ActivatedRoute } from '@angular/router';
-import { gameDetails } from '../../shared/modules/game';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { gameDetails, screenshots } from '../../shared/modules/game';
 
 @Component({
   selector: 'app-game-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './game-details.html',
   styleUrl: './game-details.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GameDetails implements OnInit {
-  constructor(private _gameServic: GamesServic, private route: ActivatedRoute) {}
+  constructor(private _gameServic: GamesServic, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.gameDatils();
+    this.getScreenshot();
+
   }
   gameDitails = signal<gameDetails>({
     id: 0,
@@ -29,22 +32,46 @@ export class GameDetails implements OnInit {
     metacritic: 0,
     metacritic_url: '',
     genres: [],
-    parent_platforms: [],
+    parent_platforms: [
+     
+    ],
     added: 0,
     game_series_count: 0,
     website: '',
-    released:''
+    released: ''
   });
+
+  gameScreenshots = signal<screenshots[]>([])
+
+
+
+
   gameDatils() {
     const gameId = Number(this.route.snapshot.paramMap.get('id'));
     this._gameServic.getGameDetails(gameId).subscribe({
       next: (res: any) => {
         this.gameDitails.set(res);
         console.log(this.gameDitails());
+        console.log(this.gameDitails().parent_platforms);
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+
+
+  getScreenshot() {
+    const gameId = Number(this.route.snapshot.paramMap.get('id'));
+    this._gameServic.getScreenshots(gameId).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.gameScreenshots.set(res.results);
+        console.log(this.gameScreenshots())
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
   }
 }

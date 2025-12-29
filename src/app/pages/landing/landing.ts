@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Card } from '../../shared/card/card';
-import { GamesServic } from '../../core/services/games-servic';
+import { GamesServic } from '../../core/services/games/games-servic';
 import { Game } from '../../shared/modules/game';
 
 @Component({
@@ -12,6 +12,7 @@ import { Game } from '../../shared/modules/game';
   styleUrl: './landing.css',
 })
 export class Landing implements OnInit {
+  
   websiteData = [
     {
       text: 'Games',

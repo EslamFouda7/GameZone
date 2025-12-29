@@ -1,22 +1,24 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal } from '@angular/core';
-import { GamesServic } from '../../core/services/games-servic';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { GamesServic } from '../../core/services/games/games-servic';
+import { ActivatedRoute } from '@angular/router';
 import { gameDetails, screenshots } from '../../shared/modules/game';
+import { favoritesService } from '../../core/services/favorites/favorites-servic';
 
 @Component({
   selector: 'app-game-details',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './game-details.html',
   styleUrl: './game-details.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GameDetails implements OnInit {
-  constructor(private _gameServic: GamesServic, private route: ActivatedRoute) { }
+  constructor(private _gameServic: GamesServic, private route: ActivatedRoute, private _favoritesService: favoritesService) { }
 
   ngOnInit(): void {
     this.gameDatils();
     this.getScreenshot();
-
+    const gameId = Number(this.route.snapshot.paramMap.get('id'));
+    this.isFav.set(this._favoritesService.isFavorites(gameId));
   }
   gameDitails = signal<gameDetails>({
     id: 0,
@@ -33,7 +35,7 @@ export class GameDetails implements OnInit {
     metacritic_url: '',
     genres: [],
     parent_platforms: [
-     
+
     ],
     added: 0,
     game_series_count: 0,
@@ -74,4 +76,24 @@ export class GameDetails implements OnInit {
       }
     })
   }
+
+
+  isFav = signal<boolean>(false);
+
+
+  addToFavorites() {
+
+    const game = this.gameDitails();
+    const gameId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this._favoritesService.isFavorites(gameId)) {
+      this._favoritesService.removeFavorites(gameId);
+      this.isFav.set(false)
+    }
+    else {
+      this._favoritesService.addFavorites(game);
+      this.isFav.set(true);
+    }
+    console.log(localStorage.getItem('favorites'))
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, effect, signal } from '@angular/core';
-import { GamesServic } from '../../core/services/games-servic';
+import { GamesServic } from '../../core/services/games/games-servic';
 import { Game, Genre } from '../../shared/modules/game';
 import { Card } from '../../shared/card/card';
 import { RouterLink } from "@angular/router";

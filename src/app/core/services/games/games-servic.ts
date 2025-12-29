@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Game, Genre, screenshots } from '../../shared/modules/game';
-import { outputAst } from '@angular/compiler';
+import { Game, Genre, screenshots } from '../../../shared/modules/game';
+
 
 @Injectable({
   providedIn: 'root',

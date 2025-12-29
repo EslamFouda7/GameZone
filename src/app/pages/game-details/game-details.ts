@@ -3,6 +3,7 @@ import { GamesServic } from '../../core/services/games/games-servic';
 import { ActivatedRoute } from '@angular/router';
 import { gameDetails, screenshots } from '../../shared/modules/game';
 import { favoritesService } from '../../core/services/favorites/favorites-servic';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-game-details',
@@ -12,7 +13,7 @@ import { favoritesService } from '../../core/services/favorites/favorites-servic
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GameDetails implements OnInit {
-  constructor(private _gameServic: GamesServic, private route: ActivatedRoute, private _favoritesService: favoritesService) { }
+  constructor(private _gameServic: GamesServic, private route: ActivatedRoute, private _favoritesService: favoritesService ,private alertToastr:ToastrService) { }
 
   ngOnInit(): void {
     this.gameDatils();
@@ -88,10 +89,12 @@ export class GameDetails implements OnInit {
     if (this._favoritesService.isFavorites(gameId)) {
       this._favoritesService.removeFavorites(gameId);
       this.isFav.set(false)
+      this.alertToastr.success('Removed form favorites 💔')
     }
     else {
       this._favoritesService.addFavorites(game);
       this.isFav.set(true);
+      this.alertToastr.success('Added to favorites ♡')
     }
     console.log(localStorage.getItem('favorites'))
   }

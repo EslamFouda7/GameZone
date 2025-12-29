@@ -21,8 +21,16 @@ body{
   background-color: #0f172a;
 }
 
-/* تخصيص مقبض شريط التمرير */
+
 ::-webkit-scrollbar-thumb {
   background-color: #334155;
   border-radius: 10px;
+}
+
+
+/* alert */
+
+.ngx-toastr {
+    background-color: #10B981 !important;
+    pointer-events: auto;
 }

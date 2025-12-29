@@ -1,5 +1,10 @@
 <div class="">
   <app-header></app-header>
   <router-outlet />
- <app-footer></app-footer>
+  <app-footer></app-footer>
 </div>
+
+<ngx-spinner bdColor="#0f172a" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true"
+  template="<img src='/logoo.png' class='w-50 h-50'/>">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

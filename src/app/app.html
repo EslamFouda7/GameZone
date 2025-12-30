@@ -4,7 +4,6 @@
   <app-footer></app-footer>
 </div>
 
-<ngx-spinner bdColor="#0f172a" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true"
-  template="<img src='logo3.png' class='w-60 h-10 '/>">
-  
-</ngx-spinner>
+@if (loading()) {
+  <app-loading-spinner></app-loading-spinner>
+}

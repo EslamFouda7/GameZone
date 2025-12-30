@@ -2,7 +2,12 @@
   <div class="overlay  absolute inset-0 bg-linear-to-b from-[#0F172A]/90 via-[#0F172A]/70 to-[#0F172A]">
   </div>
   <img src="bgImg.jpeg" alt="" class="absolute inset-0 w-full h-full -z-10 object-cover">
-  <div class=" px-4 py-2 grid justify-items-center gap-10 text-center z-50">
+  <div class="px-4 py-2 grid justify-items-center gap-10 text-center z-50">
+    <div
+      class="welcome relative flex justify-between items-center gap-2 py-2 px-5 bg-[#06805760] rounded-3xl text-[#10b981] border border-[#10b98133]">
+      <span class="block w-2 aspect-square rounded-full bg-[#10B981]"></span>
+      <p>Welcome to GameZone</p>
+    </div>
     <div class="main-title">
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold">Discover & Explore <span
           class="block mt-5 bg-linear-to-r from-[#10B981] to-[#047551] bg-clip-text text-transparent">Epic
@@ -42,7 +47,7 @@
 
 </section>
 
-<section id="gameSec" class="gameSec min-h-screen">
+<section id="gameSec" class="gameSec min-h-screen" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
   <div class="container mx-auto px-4 py-2 ">
     <div class="headSec flex justify-between">
       <div class="right">
@@ -56,7 +61,7 @@
       </a>
     </div>
     <div class="cards grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 my-20">
-      @for (game of games() ;track game.id) {
+      @for (game of games().slice(0,10) ;track game.id) {
       <a [routerLink]="['/games', game.id]">
         <app-card [game]="game"></app-card>
       </a>

@@ -14,7 +14,6 @@ export class GamesServic {
   getGames(): Observable<Game> {
     return this.http.get<Game>(`${environment.baseUrl}/games?key=${environment.baseKey}`);
   }
-
   getGameDetails(id: number) {
     return this.http.get<Game>(`${environment.baseUrl}/games/${id}?key=${environment.baseKey}`);
   }

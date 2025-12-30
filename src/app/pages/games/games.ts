@@ -59,7 +59,7 @@ export class Games {
 
   filterBySearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
-    const filtered = this.allGames.filter((game) => game.name.toLowerCase().includes(value));
+    const filtered = this.allGames.filter((game) => game.name.toLowerCase().includes(value.toLowerCase()));
      this.games.set(filtered);
   }
 }

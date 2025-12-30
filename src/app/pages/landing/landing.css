@@ -6,6 +6,9 @@
     animation: mouseAnmation 2s linear infinite ;
     filter: saturate(2);
 }
+.welcome span{
+    animation: mouseAnmation 2s linear infinite ;
+}
 
 @keyframes mouseAnmation {
     0%{

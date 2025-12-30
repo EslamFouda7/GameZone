@@ -17,8 +17,6 @@ export class App implements OnInit {
   loading = signal<boolean>(true);
   ngOnInit(): void {
      AOS.init();
-    setTimeout(()=>{
-      this.loading.set(false)
-    },2000)
+  
   }
 }
